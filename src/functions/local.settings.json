@@ -1,8 +1,0 @@
-{
-    "IsEncrypted": false,
-    "Values": {
-        "AzureWebJobsStorage": "",
-        "CosmosDb_ConnectionString": "",
-        "COGNITIVE_SERVICES_API_KEY": ""
-    }
-}

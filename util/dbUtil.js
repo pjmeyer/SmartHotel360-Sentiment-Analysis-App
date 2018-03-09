@@ -761,6 +761,7 @@ async function setupDatabase() {
 
 setupDatabase().then(function () {
     console.log("all done");
+    process.exit();
 }).catch(function (err) {
     console.error(err);
 });
