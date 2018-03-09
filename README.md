@@ -65,7 +65,7 @@ Keep the browser open! We're going to need some of the keys for use in your app.
 
 1. You'll notice that VS Code will display recommended extensions for your workspace. This is a way for the owner of a repo to indicate which VS Code extensions they recommend you use to get the best development experience. Click on `install all`, and after all the extensions have installed, click `reload` to reload the editor window.
 
-1. Sign in to your Azure subscription by using `F1` (Windows) or `Cmd-Shift-P` (Mac) to open the Visual Studio Code command palette. Type `Azure` and find the `Azure: Sign In` commannd to sign in to your Azure account. 
+1. Sign in to your Azure subscription by using `F1` (Windows, Linux) or `Cmd-Shift-P` (Mac) to open the Visual Studio Code command palette. Type `Azure` and find the `Azure: Sign In` commannd to sign in to your Azure account. 
 
     ![Sign in](docs/media/20-signin.png)
 
@@ -83,11 +83,11 @@ Keep the browser open! We're going to need some of the keys for use in your app.
 
     ![Bing Maps API Key](docs/media/23-bing-key.png)
 
-1. Copy the Cosmos DB Graph API database's Gremlin Endpoint and Primary Key into the `util/dbconfig.js` file's `endpoint` and `primarykey` properties. 
+1. Copy the Cosmos DB Graph API database's Gremlin Endpoint (found in `Overview`, you'll need to delete the "https://" and ":443/" parts of the string) and Primary Key (found in `Keys`) into the `util/dbconfig.js` file's `endpoint` and `primarykey` properties. 
 
     ![Configure the Web Site DB](docs/media/42-configure-website.png)
 
-1. Open the integrated terminal with `ctrl + backtick`.
+1. Open the integrated terminal by opening the command palette (F1) and searching for `Toggle Integrated Terminal`.
 
 1. Log in to the container registry you created in Azure setup above using the integrated terminal command below. The login server, username, and password will be found in the `access keys` section of the registry you created. 
 
@@ -120,7 +120,7 @@ The web site with this lab enables the employees of SmartHotel360 to see the soc
 
 1. Aha! 's' is zero, when it should be a tweet object. This is because in the loop above, the keyword `in` is assigning the variable 's' to the index of the array, and not the object that corresponds to that index. Confirm this by typing `data.tweets[s]` into the debug console below. 
 
-1. In the loop, change the word `"in"` to `"of"`, save the file, and reload the web page. It's fixed! You should see the new graphic in the bottom left.
+1. In the loop, change the word `"in"` to `"of"`, save the file, remove the breakpoint, and click the `reload icon` button near the top of the VS Code editor. Refresh the web page. It's fixed! You should see the new graphic in the bottom left. Back in VS Code, stop the debugger by clicking the `stop icon`. 
 
 
 ### Dockerize the site and push it to Azure Container Registry
@@ -133,12 +133,12 @@ The Docker tools for Visual Studio Code make it easy to work with Docker images 
     
     ![Docker image built](docs/media/46-image-built.png)
 
-    > Note: The screen shot above also shows the `node:alpine` image, but the version may vary over time. What's important is that you see the `webapp:latest` image in the list. 
+    > Note: The screen shot above also shows the `node:alpine` image, but the version may vary over time. What's important is that you see the `SmartHotel360-Sentiment-Analysis-App:latest` image in the list. 
 
-1. Now let's tag this image to map it to your Azure Container Registry. Right click on `web:latest` image, and select `Tag Image`. In the command palette, add the URL of your registry to the beginning of your image name, followed by a "/". It'll look something like this:
+1. Now let's tag this image to map it to your Azure Container Registry. Right click on `SmartHotel360-Sentiment-Analysis-App:latest` image, and select `Tag Image`. In the command palette, add the URL of your registry to the beginning of your image name, followed by a "/". It'll look something like this:
 
     ```
-    <yourname>.azurecr.io/webapp:latest
+    <yourname>.azurecr.io/SmartHotel360-Sentiment-Analysis-App:latest
     ```
 
     > Can't find the URL? In the Azure portal, navigate to your registry, and look under the **Access keys** menu option. 
@@ -153,7 +153,7 @@ The Docker tools for Visual Studio Code make it easy to work with Docker images 
 
 The final step in the deployment process is to deploy the Docker image from Azure Container Registry to Azure App Service. This can all be done within Visual Studio Code, and the site will be live!
 
-1. Under `Registries -> Azure`, you'll see your registry in the tree. Continue to navigate until you see the `webapp:latest` image. Right-click it and select the **Deploy Image to Azure App Service** option. 
+1. Under `Registries -> Azure`, you'll see your registry in the tree. Continue to navigate until you see the `SmartHotel360-Sentiment-Analysis-App:latest` image. Right-click it and select the **Deploy Image to Azure App Service** option. 
 
     ![Deploy the Image](docs/media/49-deploy-image.png)
 
